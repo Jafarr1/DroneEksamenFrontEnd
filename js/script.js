@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const createDroneButton = document.getElementById("create-drone-button");
     const createDeliveryButton = document.getElementById("create-delivery-button");
 
-    // Funktion til at hente alle aktive leveringer
+
     function fetchActiveDeliveries() {
         fetch('http://localhost:8080/deliveries')
             .then(response => response.json())
@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Fejl ved hentning af leveringer:', error));
     }
 
-    // Funktion til at hente alle droner
     function fetchDrones() {
         fetch('http://localhost:8080/drones')
             .then(response => response.json())
@@ -24,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Fejl ved hentning af droner:', error));
     }
 
-    // Funktion til at opdatere listen over leveringer i DOM
+
     function updateDeliveryList(deliveries) {
-        deliveryListElement.innerHTML = ''; // Ryd listen først
+        deliveryListElement.innerHTML = '';
 
         deliveries.forEach(delivery => {
             const listItem = document.createElement('li');
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span>${delivery.drone ? 'Drone tildelt' : 'Ingen drone tildelt'}</span>
             `;
 
-            // Tilføj knapper til listen
+
             listItem.appendChild(assignButton);
             listItem.appendChild(finishButton);
 
@@ -59,9 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Funktion til at opdatere listen over droner i DOM
+
     function updateDroneList(drones) {
-        droneListElement.innerHTML = ''; // Ryd listen først
+        droneListElement.innerHTML = '';
 
         drones.forEach(drone => {
             const listItem = document.createElement('li');
@@ -75,14 +74,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Funktion til at tildele en drone til en levering (POST request)
+
     function assignDrone(deliveryId) {
         const serialUuid = prompt('Indtast drone UUID for tildeling:');
         if (serialUuid) {
-            // Opret URL'en ved at indsætte deliveryId og serialUuid i pathen
+
             const url = `http://localhost:8080/deliveries/schedule/${deliveryId}/${serialUuid}`;
 
-            // Send POST-anmodningen med den opdaterede URL
+
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -107,19 +106,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    // Afslut en levering
+
     function finishDelivery(deliveryId) {
         fetch(`http://localhost:8080/deliveries/finish/${deliveryId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             }
-            // Fjern body, da deliveryId allerede er i URL'en
+
         })
             .then(response => {
                 if (response.ok) {
                     alert('Levering afsluttet');
-                    fetchActiveDeliveries(); // Opdater listen
+                    fetchActiveDeliveries();
                 } else {
                     alert('Fejl ved afslutning af levering');
                 }
@@ -130,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Opret en ny drone
+
     createDroneButton.addEventListener('click', function() {
         fetch('http://localhost:8080/drones/add', { method: 'POST' })
             .then(response => {
@@ -143,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
-    // Opret en ny levering
+
     createDeliveryButton.addEventListener('click', function() {
         const pizzaId = prompt('Indtast pizza ID for levering:');
         if (pizzaId) {
@@ -157,12 +156,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Hent og vis leveringer og droner ved første indlæsning
+
     fetchActiveDeliveries();
     fetchDrones();
 
 
-    // Opdater listen hvert 60. sekund
+
     setInterval(() => {
         fetchActiveDeliveries();
         fetchDrones();
