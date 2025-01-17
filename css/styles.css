@@ -1,0 +1,66 @@
+/* Generelle stilarter for body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container der holder indholdet */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stil for h1 og h2 */
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Stil for liste med leveringer */
+.delivery-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Hver leverings listeelement */
+.delivery-item {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+/* Hover-effekt på leveringsliste */
+.delivery-item:hover {
+    background-color: #e9e9e9;
+}
+
+/* Stil for knapper */
+.button {
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Button container */
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+}
