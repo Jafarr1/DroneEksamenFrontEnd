@@ -167,6 +167,3 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchDrones();
     }, 60000); // 60.000 ms = 60 sekunder
 });
-
-//TODO: lav en knap der kan tildele drone til en levering
-//TODO: lav en side der simulerer en kundebestilling // • Mulighed for at simulere, at en levering af en pizza bliver oprettet (af kunden)<
